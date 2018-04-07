@@ -22,6 +22,9 @@ import com.example.rio.week5hw.Interface.RecyclerViewClickListener;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
+import io.realm.RealmList;
+
 
 public class CFragment extends Fragment implements DialogClickListener {
     // TODO: Rename parameter arguments, choose names that match
@@ -31,11 +34,12 @@ public class CFragment extends Fragment implements DialogClickListener {
     private Button btnAddTask;
     private DataRecyclerViewAdapter dataRecyclerViewAdapter;
     private ArrayList<Act> acts;
+    private Realm realm;
     public CFragment() {
         // Required empty public constructor
     }
 
-    public static CFragment newInstance(String param1, String param2) {
+    public static CFragment newInstance() {
         CFragment fragment = new CFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -53,7 +57,13 @@ public class CFragment extends Fragment implements DialogClickListener {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_c, container, false);
     }
-      @Override
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
       public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view,savedInstanceState);
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -165,4 +175,5 @@ public class CFragment extends Fragment implements DialogClickListener {
         AlertDialog dialog = alert.create();
         dialog.show();
     }
+
 }
